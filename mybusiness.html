@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title> Web Developer</title>
+    <meta name="description"
+        content="Sujit Vishwakarma – Professional Web Developer creating fast, responsive and affordable websites for businesses.">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+
+
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Montserrat", sans-serif;
+        }
+
+        .sidebar,
+        .main {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        body {
+            background: #F3F4F6;
+        }
+
+        /* ===== LAYOUT ===== */
+        .wrapper {
+            max-width: 1150px;
+            margin: 40px auto;
+            display: flex;
+            gap: 20px;
+        }
+
+        /* ===== SIDEBAR ===== */
+        .sidebar {
+            width: 300px;
+            background: #fff;
+            border: 1px solid rgb(128, 128, 128);
+            color: black;
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .sidebar img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-bottom: 15px;
+        }
+
+        @media (max-width: 768px) {
+
+            .wrapper {
+                flex-direction: column;
+                /* left upar, right niche */
+                margin: 15px;
+            }
+
+            .sidebar {
+                width: 100%;
+                /* full width */
+            }
+
+            @media (max-width: 768px) {
+
+                .contact input,
+                .contact textarea,
+                .contact select {
+                    width: 100%;
+                    /* full width on phone */
+                    font-size: 16px;
+                }
+
+                .contact form {
+                    max-width: 500px;
+                }
+
+
+                .contact form {
+                    text-align: left;
+                }
+
+            }
+
+
+            .main {
+                width: 100%;
+                padding: 20px;
+            }
+
+        }
+
+        .sidebar h2 {
+            font-size: 22px;
+            color: black;
+        }
+
+        .sidebar p {
+            color: #363636;
+            font-size: 14px;
+        }
+
+        .sidebar hr {
+            border: 0.5px solid #333;
+            margin: 20px 0;
+        }
+
+        .sidebar .info {
+            text-align: left;
+            font-size: 14px;
+            line-height: 1.9;
+        }
+
+        /* ===== MAIN CARD ===== */
+        .main {
+            flex: 1;
+            background: white;
+            border: 1px solid rgb(128, 128, 128);
+            border-radius: 20px;
+            padding: 30px;
+        }
+
+        /* ===== TABS ===== */
+        .tabs {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .tabs button {
+            border: none;
+            background: #eee;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .tabs button.active {
+            background: #ff4d4d;
+            color: #fff;
+        }
+
+        /* ===== SECTIONS ===== */
+        .section {
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        .section h3 {
+            margin-bottom: 10px;
+        }
+
+        .section p {
+            color: #000000;
+            line-height: 1.6;
+        }
+
+        /* ===== SKILLS ===== */
+        .skills span {
+            display: inline-block;
+            background: #eee;
+            padding: 6px 12px;
+            margin: 5px;
+            border-radius: 20px;
+            font-size: 13px;
+        }
+
+        /* ===== PROJECTS ===== */
+        .project {
+            background: #F9FAFB;
+            color: #111827;
+            border: 1px solid #e5e7eb;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        /* ===== CONTACT ===== */
+        .contact input,
+        .contact textarea {
+            width: 50%;
+            padding: 8px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+        }
+
+        .contact button {
+            background: #ff4d4d;
+            color: black;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+        }
+
+        h3 {
+            color: black;
+        }
+
+        ul {
+            color: #000000;
+        }
+
+        p.ab {
+            color: black;
+
+        }
+
+        h2,
+        label {
+            color: #000000;
+        }
+
+        .a {
+            color: white;
+        }
+
+        /* ===== CONTACT FORM FIX ===== */
+        .contact form {
+            max-width: 500px;
+        }
+
+        .contact input,
+        .contact textarea,
+        .contact select {
+            width: 50%;
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        /* ===== MOBILE ONLY ===== */
+        @media (max-width: 768px) {
+
+            .contact input,
+            .contact textarea,
+            .contact select {
+                width: 100%;
+                /* FULL WIDTH ON PHONE */
+                font-size: 16px;
+            }
+        }
+
+        .cta-buttons {
+            margin-top: 30px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            text-decoration: none;
+            padding: 12px 22px;
+            font-size: 16px;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: #ff4d4d;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #e63c3c;
+        }
+
+        .btn-secondary {
+            background-color: #000;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background-color: #333;
+        }
+
+        .btn-linkedin {
+            background-color: #0a66c2;
+            color: white;
+        }
+
+        .btn-linkedin:hover {
+            background-color: #004182;
+        }
+
+        .cta-buttons {
+            margin-top: 20px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            text-decoration: none;
+            padding: 12px 22px;
+            font-size: 16px;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: 0.3s ease;
+            color: white;
+        }
+
+
+        .btn-email {
+            background-color: #d93025;
+        }
+
+        .btn-email:hover {
+            background-color: #b3261e;
+        }
+
+
+        .btn-whatsapp {
+            background-color: #25d366;
+        }
+
+        .btn-whatsapp:hover {
+            background-color: #1ebe5d;
+        }
+
+        .call-btn {
+            display: inline-block;
+            padding: 12px 20px;
+            background-color: rgb(55, 231, 55);
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .call-btn:hover {
+            background-color: rgb(44, 190, 44);
+        }
+
+        form {
+            border-radius: 8px;
+            padding: 20px;
+            border: 1px solid gray;
+        }
+
+        a.the:hover {
+            background-color: #004182;
+            border-radius: 8px;
+            padding: 8px;
+
+            color: white;
+
+        }
+
+        a.the {
+            text-decoration: none;
+            border-radius: 8px;
+            background-color: #0a66c2;
+            border: 1px;
+            padding: 8px;
+            color: white;
+
+
+        }
+
+        .btn-instagram {
+            background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af);
+            color: white;
+        }
+
+        .btn-instagram:hover {
+            opacity: 0.9;
+        }
+
+
+    </style>
+</head>
+
+<body>
+
+    <div class="wrapper">
+
+
+        <aside class="sidebar">
+            <img src="profile.jfif" alt="profile">
+            <h2 class="a">Sujit Vishwakarma</h2>
+            <p> Web Developer | Web Designer
+            </p>
+
+            <hr>
+
+            <div class="info">
+                <i class="fa-solid fa-envelope"></i> kvs.sujit@gmail.com<br>
+                <i class="fa-solid fa-phone"></i> +91 99309 64404<br>
+                <i class="fa-solid fa-location-dot"></i> Bhiwandi-Thane, Maharashtra, India
+            </div>
+        </aside>
+
+
+        <main class="main">
+
+
+            <div class="tabs">
+                <button class="active" onclick="openTab('home',this)">Home</button>
+                <button onclick="openTab('about',this)">About</button>
+                <button id="serviceTab" onclick="openTab('service',this)">Service</button>
+                <button onclick="openTab('skills',this)">Skills</button>
+                <button onclick="openTab('projects',this)">Projects</button>
+                <button onclick="openTab('contact',this)">Contact</button>
+            </div>
+
+
+            <section id="home" class="section active">
+                <h3><b>Home</b></h3>
+                <h4><b>Professional Website Development Service</b></h4><br>
+                <p>Hi, I’m Sujit Vishwakarma Professional Web Developer | Affordable, fast & mobile-friendly websites
+                    for your business. I design modern, fast, and mobile-friendly websites that help you grow your
+                    business online.</p>
+                <div class="cta-buttons">
+                    <a onclick="openServiceTab()" class="btn btn-primary"> <i class="fa-solid fa-briefcase"></i> View My
+                        Services</a>
+                    <a href="https://www.linkedin.com/in/sujit-vishwakarma-90b3b63a4?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+                        target="_blank" class="btn btn-linkedin"><i class="fa-brands fa-linkedin-in"></i>
+                        Connect on LinkedIn
+                    </a>
+
+                    <a href="mailto:kvs.sujit@gmail.com" class="btn btn-email"><i class="fa-solid fa-envelope"></i>
+                        Email Me
+                    </a>
+
+
+                    <a href="https://wa.me/919930964404" target="_blank" class="btn btn-whatsapp"><i
+                            class="fa-brands fa-whatsapp"></i>
+                        WhatsApp
+                    </a>
+                    <a href="tel:+919930964404" target="_blank" class="call-btn"><i class="fa-solid fa-phone"></i>
+                        Call</a>
+                    <a href="https://www.instagram.com/sujiit__01" target="_blank" class="btn btn-instagram">
+                        <i class="fa-brands fa-instagram"></i> Follow on Instagram
+                    </a>
+                    
+                </div>
+
+
+
+            </section>
+            <section id="about" class="section">
+                <h3><b>About</b></h3>
+                <h4><b>Turning Ideas into Powerful Websites</b></h4><br>
+                <p>I am a passionate web developer who builds professional websites for small and growing businesses.
+                    <br>My focus is on clean design, fast performance and client satisfaction. <br>I always understand
+                    the client's requirements and provide the best solution according to his business.
+                </p><br>
+                <h4>Core Values:</h4>
+                <ul>
+                    <li>Quality First</li>
+                    <li>Client Satisfaction</li>
+                    <li>On-Time Delivery</li>
+                    <li>Transparency</li>
+                    <li>Responsive Design</li>
+                    <li>Continuous Learning</li>
+                    <li>After-Support</li>
+
+                </ul>
+
+
+            </section>
+
+            <!-- SERVICES -->
+            <section id="service" class="section">
+                <h3><b>Service</b></h3>
+                <h4><b>Complete Web Solutions Under One Roof</b></h4><br>
+                <h4 class="ab">Website Development Services:</h4>
+                <ul>
+                    <li>Static & Dynamic Website</li>
+                    <li>Business Website Development</li>
+                    <li>Portfolio Website</li>
+                    <li>Landing Page Design</li>
+                    <li>Website Redesign</li>
+                    <li>Mobile Responsive Design</li>
+                    <li>Website Maintenance</li>
+                    <li>Domain & Hosting Setup</li>
+                    <br>
+                </ul>
+
+            </section>
+
+            <!-- SKILLS -->
+            <section id="skills" class="section skills">
+                <h3><b>Skills</b></h3>
+                <h4><b>Skills That Power Modern Websites</b></h4><br>
+                <h4 class="ab">Skills:</h4>
+                <ul>
+                    <li>HTML5</li>
+                    <li>CSS3</li>
+                    <li>JavaScript</li>
+                    <li>Responsive Design</li>
+                    <li>Bootstrap</li>
+                    <li>Basic SEO</li>
+                    <li>GitHub Hosting</li>
+                </ul><br>
+                <h4 class="ab">Modern and secure websites are created using the latest technologies.</h4>
+
+            </section>
+
+            <!-- PROJECTS -->
+            <section id="projects" class="section">
+                <h3><b>Projects</b></h3>
+                <h4><b>My Work Speaks for Itself</b></h4><br>
+                <h4 class="ab"> Projects:</h4>
+                <p>projects that I have created for clients and personal practice.</p><br>
+                <a class="the" href="https://sujiit08.github.io/TheSujitWebsite/" target="_blank">The Sujit Web</a>
+
+            </section>
+
+            <!-- CONTACT -->
+            <section id="contact" class="section contact">
+                <h3><b>Contact</b></h3>
+                <h4><b>Let’s Build Your Website Together</b></h4>
+                <p>If you want to bring your business online or want to create a professional website, then contact us
+                    without hesitation.</p>
+                <div>
+                    <form action="#" onsubmit="sendWhatsApp(); return false;" class="a">
+                        <h3 style="text-align: center;">Service Request</h3>
+                        <label>Name</label>
+                        <input type="text" placeholder="Enter Your Full Name" required><br><br>
+
+                        <label>WhatsApp Number</label>
+                        <input type="tel" required placeholder="10 digit number"><br><br>
+
+                        <label>Email Address</label>
+                        <input type="email" required placeholder="example@gmail.com"><br><br>
+
+                        <label>Service Required</label>
+                        <select required>
+                            <option value="">Select Service</option>
+                            <option>Static & Dynamic Website</option>
+                            <option>Business Website Development</option>
+                            <option>Portfolio Website</option>
+                            <option>Landing Page Design</option>
+                            <option>Website Redesign</option>
+                            <option>Mobile Responsive Design</option>
+                            <option>Website Maintenance</option>
+                            <option>Domain & Hosting Setup</option>
+                        </select><br><br>
+
+                        <label>Message</label>
+                        <textarea rows="1" required></textarea><br><br>
+
+                        <button type="submit">Send Request</button>
+
+                    </form>
+                </div>
+            </section>
+
+        </main>
+    </div>
+    <script>
+        function showMessage() {
+            alert("Your Information Submited");
+        }
+    </script>
+    <script>
+        function openServiceTab() {
+            let serviceBtn = document.getElementById("serviceTab");
+            openTab("service", serviceBtn);
+        }
+    </script>
+
+
+    <script>
+        function openTab(id, btn) {
+            document.querySelectorAll(".section").forEach(sec => {
+                sec.classList.remove("active");
+            });
+            document.getElementById(id).classList.add("active");
+
+            document.querySelectorAll(".tabs button").forEach(b => {
+                b.classList.remove("active");
+            });
+            btn.classList.add("active");
+        }
+    </script>
+    <script>
+        function sendWhatsApp() {
+
+            let name = document.querySelector("input[type=text]").value;
+            let phone = document.querySelector("input[type=tel]").value;
+            let email = document.querySelector("input[type=email]").value;
+            let service = document.querySelector("select").value;
+            let message = document.querySelector("textarea").value;
+
+            let whatsappNumber = "919930964404";
+
+            let text =
+                "Service Request%0A" +
+                "Name: " + name + "%0A" +
+                "Phone: " + phone + "%0A" +
+                "Email: " + email + "%0A" +
+                "Service: " + service + "%0A" +
+                "Message: " + message;
+
+            let url = "https://wa.me/" + whatsappNumber + "?text=" + text;
+
+            window.open(url, "_blank");
+        }
+    </script>
+
+</body>
+
+</html>
