@@ -547,7 +547,7 @@
                 <p>If you want to bring your business online or want to create a professional website, then contact us
                     without hesitation.</p>
                 <div>
-                    <form action="#" onsubmit="sendWhatsApp(); return false;" class="a">
+                    <form id="contactForm" action="#" onsubmit="sendWhatsApp(); return false;" class="a">
                         <h3 style="text-align: center;">Service Request</h3>
                         <label>Name</label>
                         <input type="text" placeholder="Enter Your Full Name" required><br><br>
@@ -634,11 +634,22 @@
             window.open(url, "_blank");
         }
     </script>
+    <script>
+document.getElementById("contactForm").addEventListener("submit", function(e) {
+  var response = grecaptcha.getResponse();
+  if (response.length === 0) {
+    e.preventDefault(); // form submit rok do
+    alert("Please verify that you are not a robot.");
+  }
+});
+</script>
+
 
 </body>
 
 
 </html>
+
 
 
 
