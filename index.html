@@ -553,7 +553,7 @@
                         <input type="text" placeholder="Enter Your Full Name" required><br><br>
 
                         <label>WhatsApp Number</label>
-                        <input type="tel" required placeholder="10 digit number"><br><br>
+                        <input type="tel" name="mobile" required placeholder="10 digit number" maxlength="10" pattern="[0-9]{10}"><br><br>
 
                         <label>Email Address</label>
                         <input type="email" required placeholder="example@gmail.com"><br><br>
@@ -573,7 +573,7 @@
 
                         <label>Message</label>
                         <textarea rows="1" required></textarea><br><br>
-                        <div class="g-recaptcha" data-sitekey="6Lf4_VIsAAAAACHb7LuBTPbtjIhn5o_MjoJ9MiiQ"></div>
+                        <div class="g-recaptcha" data-sitekey="6Lf4_VIsAAAAACHb7LuBTPbtjIhn5o_MjoJ9MiiQ" required></div>
 
 
                         <button type="submit">Send Request</button>
@@ -652,6 +652,7 @@ document.getElementById("contactForm").addEventListener("submit", function(e) {
 
 
 </html>
+
 
 
 
