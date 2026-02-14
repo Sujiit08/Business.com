@@ -267,5 +267,55 @@
   data-id="cml117e310001l804tfymdolw"
   async defer>
 </script>
+    <script type="module">
+  // Firebase CDN Imports
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+  // ✅ Aapka Firebase Config
+  const firebaseConfig = {
+    apiKey: "AIzaSyDA_dNZKRKHEEA9IQ6yO03o9QFqO9dheqw",
+    authDomain: "business-e0944.firebaseapp.com",
+    projectId: "business-e0944",
+    storageBucket: "business-e0944.firebasestorage.app",
+    messagingSenderId: "757820881392",
+    appId: "1:757820881392:web:d5cd79bc00056094d54535",
+    measurementId: "G-TCVBMESJ1H"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  const form = document.querySelector("form");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const name = form.querySelector('[name="name"]').value;
+    const whatsapp = form.querySelector('[name="whatsapp"]').value;
+    const email = form.querySelector('[name="email"]').value;
+    const service = form.querySelector('[name="service"]').value;
+    const message = form.querySelector('[name="message"]').value;
+
+    try {
+      await addDoc(collection(db, "contacts"), {
+        name,
+        whatsapp,
+        email,
+        service,
+        message,
+        createdAt: new Date()
+      });
+
+      alert("Request Submitted Successfully 🚀");
+      form.reset();
+    } catch (error) {
+      alert("Error saving data ❌");
+      console.error(error);
+    }
+  });
+</script>
+
 </body>
 </html>
+
