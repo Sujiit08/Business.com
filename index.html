@@ -291,19 +291,19 @@
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const name = form.querySelector('[name="name"]').value;
-    const whatsapp = form.querySelector('[name="whatsapp"]').value;
-    const email = form.querySelector('[name="email"]').value;
-    const service = form.querySelector('[name="service"]').value;
-    const message = form.querySelector('[name="message"]').value;
+    const name = form.querySelector('[name="Name"]').value;
+    const whatsapp = form.querySelector('[name="Whatsapp"]').value;
+    const email = form.querySelector('[name="Email"]').value;
+    const service = form.querySelector('[name="Service"]').value;
+    const message = form.querySelector('[name="Message"]').value;
 
     try {
       await addDoc(collection(db, "contacts"), {
-        name,
-        whatsapp,
-        email,
-        service,
-        message,
+        Name,
+        Whatsapp,
+        Email,
+        Service,
+        Message,
         createdAt: new Date()
       });
 
@@ -318,4 +318,5 @@
 
 </body>
 </html>
+
 
