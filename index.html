@@ -14,6 +14,9 @@
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <link rel="icon" href="business.png" type="image/png">
     <link rel="stylesheet" href="style.css">
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+
 </head>
 
 <body>
@@ -256,10 +259,7 @@
   data-id="cml117e310001l804tfymdolw"
   async defer>
 </script>
-   <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-  import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-
+   <script>
   const firebaseConfig = {
     apiKey: "AIzaSyDA_dNZKRKHEEA9IQ6yO03o9QFqO9dheqw",
     authDomain: "business-e0944.firebaseapp.com",
@@ -269,51 +269,48 @@
     appId: "1:757820881392:web:d5cd79bc00056094d54535"
   };
 
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
 
-  const form = document.getElementById("contactForm");
+  window.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("contactForm");
 
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
 
-    // ✅ reCAPTCHA check
-  // const captchaResponse = grecaptcha.getResponse();
-     // if (captchaResponse.length === 0) {
-  //    alert("Please complete the reCAPTCHA before submitting.");
-  //    return;
- //   }
+      alert("Submit Working ✅");
 
-    const name = form.querySelector('[name="name"]').value;
-    const mobile = form.querySelector('[name="mobile"]').value;
-    const email = form.querySelector('[name="email"]').value;
-    const service = form.querySelector('[name="service"]').value;
-    const message = form.querySelector('[name="message"]').value;
+      const name = form.name.value;
+      const mobile = form.mobile.value;
+      const email = form.email.value;
+      const service = form.service.value;
+      const message = form.message.value;
 
-    try {
-      await addDoc(collection(db, "contacts"), {
+      db.collection("contacts").add({
         name: name,
         mobile: mobile,
         email: email,
         service: service,
         message: message,
         createdAt: new Date()
+      })
+      .then(function () {
+        alert("Request Submitted Successfully 🚀");
+        form.reset();
+      })
+      .catch(function (error) {
+        console.error("Error:", error);
+        alert("Error saving data ❌");
       });
 
-      alert("Request Submitted Successfully 🚀");
-      form.reset();
-      // grecaptcha.reset();
-
-    } catch (error) {
-      console.error(error);
-      alert("Error saving data ❌");
-    }
+    });
   });
 </script>
 
 
 </body>
 </html>
+
 
 
 
