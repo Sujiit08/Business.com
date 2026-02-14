@@ -259,28 +259,28 @@
   data-id="cml117e310001l804tfymdolw"
   async defer>
 </script>
-<script>
+    <script>
   const firebaseConfig = {
-    apiKey: "AIzaSyDA_dNZKRKHEEA9IQ6yO03o9QFqO9dheqw",
-    authDomain: "business-e0944.firebaseapp.com",
-    projectId: "business-e0944",
-    storageBucket: "business-e0944.firebasestorage.app",
-    messagingSenderId: "757820881392",
-    appId: "1:757820881392:web:d5cd79bc00056094d54535"
-  };
+    apiKey: "AIzaSyDA_dNZKRKHEEA9IQ6yO03o9QFqO9dheqw", authDomain: "business-e0944.firebaseapp.com", projectId: "business-e0944", storageBucket: "business-e0944.firebasestorage.app", messagingSenderId: "757820881392", appId: "1:757820881392:web:d5cd79bc00056094d54535", measurementId: "G-TCVBMESJ1H" };
 
   firebase.initializeApp(firebaseConfig);
   const db = firebase.firestore();
 
   document.getElementById("contactForm").addEventListener("submit", function (e) {
-    e.preventDefault();
+    e.preventDefault(); // 🔥 page refresh stop
+
+    const name = document.querySelector("[name='name']").value;
+    const mobile = document.querySelector("[name='mobile']").value;
+    const email = document.querySelector("[name='email']").value;
+    const service = document.querySelector("[name='service']").value;
+    const message = document.querySelector("[name='message']").value;
 
     db.collection("contacts").add({
-      name: document.querySelector("[name='name']").value,
-      mobile: document.querySelector("[name='mobile']").value,
-      email: document.querySelector("[name='email']").value,
-      service: document.querySelector("[name='service']").value,
-      message: document.querySelector("[name='message']").value,
+      name: name,
+      mobile: mobile,
+      email: email,
+      service: service,
+      message: message,
       createdAt: new Date()
     })
     .then(function () {
@@ -294,5 +294,7 @@
 </script>
 
 
+
 </body>
 </html>
+
