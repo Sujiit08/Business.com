@@ -158,24 +158,23 @@
                 <p>If you want to bring your business online or want to create a professional website, then contact us
                     without hesitation.</p>
                 <div>
-                   <form action="https://api.staticforms.dev/submit" method="POST">
-  <input type="hidden" name="apiKey" value="sf_78i1flg8m5l8kg3j4969nj2c">
+                   <form id="contactForm" method="POST">
                        <input type="hidden" name="redirectTo" value="https://sujiit08.github.io/Business.com/thankyou.html">
 
 
                         <h3 style="text-align: center;">Service Request</h3>
                         <label>Name</label>
-                        <input type="text" name="Name" placeholder="Enter Your Full Name" required><br><br>
+                        <input type="text" name="name" placeholder="Enter Your Full Name" required><br><br>
 
                         <label>WhatsApp Number</label>
-                        <input type="tel" name="Mobile" required placeholder="10 digit number" maxlength="10"
+                        <input type="tel" name="mobile" required placeholder="10 digit number" maxlength="10"
                             pattern="[0-9]{10}"><br><br>
 
                         <label>Email Address</label>
-                        <input type="email" name="Email" required placeholder="example@gmail.com"><br><br>
+                        <input type="email" name="email" required placeholder="example@gmail.com"><br><br>
 
                         <label>Service Required</label>
-                        <select name="Service" required>
+                        <select name="service" required>
                             <option value="">Select Service</option>
                             <option>Static & Dynamic Website</option>
                             <option>Business Website Development</option>
@@ -188,7 +187,7 @@
                         </select><br><br>
 
                         <label>Message</label>
-                        <textarea name="Message" rows="2" required></textarea><br><br>
+                        <textarea name="message" rows="2" required></textarea><br><br>
                         <div class="g-recaptcha" data-sitekey="6Lf4_VIsAAAAACHb7LuBTPbtjIhn5o_MjoJ9MiiQ" required></div>
 
 
@@ -240,83 +239,81 @@
 
             let text =
                 "Service Request%0A" +
-                "Name: " + Name + "%0A" +
-                "Phone: " + Phone + "%0A" +
-                "Email: " + Email + "%0A" +
-                "Service: " + Service + "%0A" +
-                "Message: " + Message;
+                "Name: " + name + "%0A" +
+                "Phone: " + phone + "%0A" +
+                "Email: " + email + "%0A" +
+                "Service: " + service + "%0A" +
+                "Message: " + message;
 
             let url = "https://wa.me/" + whatsappNumber + "?text=" + text;
 
             window.open(url, "_blank");
         }
     </script>
-    <script>
-        document.getElementById("contactForm").addEventListener("submit", function (e) {
-            var captchaResponse = grecaptcha.getResponse();
-
-            if (captchaResponse.length === 0) {
-                e.preventDefault(); // ⛔ submit rok do
-                alert("Please complete the reCAPTCHA before submitting.");
-                return false;
-            }
-        });
-    </script>
+    
 <script
   src="https://app.livechatai.com/embed.js"
   data-id="cml117e310001l804tfymdolw"
   async defer>
 </script>
-    <script type="module">
-  // Firebase CDN Imports
+   <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
   import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-  // ✅ Aapka Firebase Config
   const firebaseConfig = {
     apiKey: "AIzaSyDA_dNZKRKHEEA9IQ6yO03o9QFqO9dheqw",
     authDomain: "business-e0944.firebaseapp.com",
     projectId: "business-e0944",
     storageBucket: "business-e0944.firebasestorage.app",
     messagingSenderId: "757820881392",
-    appId: "1:757820881392:web:d5cd79bc00056094d54535",
-    measurementId: "G-TCVBMESJ1H"
+    appId: "1:757820881392:web:d5cd79bc00056094d54535"
   };
 
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
 
-  const form = document.querySelector("form");
+  const form = document.getElementById("contactForm");
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const name = form.querySelector('[name="Name"]').value;
-    const whatsapp = form.querySelector('[name="Whatsapp"]').value;
-    const email = form.querySelector('[name="Email"]').value;
-    const service = form.querySelector('[name="Service"]').value;
-    const message = form.querySelector('[name="Message"]').value;
+    // ✅ reCAPTCHA check
+    const captchaResponse = grecaptcha.getResponse();
+    if (captchaResponse.length === 0) {
+      alert("Please complete the reCAPTCHA before submitting.");
+      return;
+    }
+
+    const name = form.querySelector('[name="name"]').value;
+    const mobile = form.querySelector('[name="mobile"]').value;
+    const email = form.querySelector('[name="email"]').value;
+    const service = form.querySelector('[name="service"]').value;
+    const message = form.querySelector('[name="message"]').value;
 
     try {
       await addDoc(collection(db, "contacts"), {
-        Name,
-        Whatsapp,
-        Email,
-        Service,
-        Message,
+        name: name,
+        mobile: mobile,
+        email: email,
+        service: service,
+        message: message,
         createdAt: new Date()
       });
 
       alert("Request Submitted Successfully 🚀");
       form.reset();
+      grecaptcha.reset();
+
     } catch (error) {
-      alert("Error saving data ❌");
       console.error(error);
+      alert("Error saving data ❌");
     }
   });
 </script>
 
+
 </body>
 </html>
+
 
 
