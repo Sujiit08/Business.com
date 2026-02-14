@@ -161,7 +161,7 @@
                 <p>If you want to bring your business online or want to create a professional website, then contact us
                     without hesitation.</p>
                 <div>
-                   <form id="contactForm" method="POST">
+                   <form id="contactForm">
                        <input type="hidden" name="redirectTo" value="https://sujiit08.github.io/Business.com/thankyou.html">
 
 
@@ -282,10 +282,9 @@
         createdAt: new Date()
       })
       .then(function () {
-        console.log("Firestore Success");
-        alert("Request Submitted Successfully 🚀");
-        form.reset();
-      })
+       window.location.href = "thankyou.html";
+})
+
       .catch(function (error) {
         console.log("Firestore Error:", error);
         alert("Error saving data ❌");
@@ -300,6 +299,7 @@
 
 </body>
 </html>
+
 
 
 
