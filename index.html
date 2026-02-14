@@ -260,15 +260,6 @@
   async defer>
 </script>
    <script>
-  const firebaseConfig = {
-    apiKey: "AIzaSyDA_dNZKRKHEEA9IQ6yO03o9QFqO9dheqw",
-    authDomain: "business-e0944.firebaseapp.com",
-    projectId: "business-e0944",
-    storageBucket: "business-e0944.firebasestorage.app",
-    messagingSenderId: "757820881392",
-    appId: "1:757820881392:web:d5cd79bc00056094d54535"
-  };
-
   firebase.initializeApp(firebaseConfig);
   const db = firebase.firestore();
 
@@ -280,36 +271,36 @@
 
       alert("Submit Working ✅");
 
-      const name = form.name.value;
-      const mobile = form.mobile.value;
-      const email = form.email.value;
-      const service = form.service.value;
-      const message = form.message.value;
+      console.log("Before Firestore");
 
       db.collection("contacts").add({
-        name: name,
-        mobile: mobile,
-        email: email,
-        service: service,
-        message: message,
+        name: form.name.value,
+        mobile: form.mobile.value,
+        email: form.email.value,
+        service: form.service.value,
+        message: form.message.value,
         createdAt: new Date()
       })
       .then(function () {
+        console.log("Firestore Success");
         alert("Request Submitted Successfully 🚀");
         form.reset();
       })
       .catch(function (error) {
-        console.error("Error:", error);
+        console.log("Firestore Error:", error);
         alert("Error saving data ❌");
       });
 
+      console.log("After Firestore Call");
     });
   });
 </script>
 
 
+
 </body>
 </html>
+
 
 
 
