@@ -14,9 +14,6 @@
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <link rel="icon" href="business.png" type="image/png">
     <link rel="stylesheet" href="style.css">
-    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
-
 </head>
 
 <body>
@@ -161,20 +158,24 @@
                 <p>If you want to bring your business online or want to create a professional website, then contact us
                     without hesitation.</p>
                 <div>
-                   <form id="contactForm">
-                       <h3 style="text-align: center;">Service Request</h3>
+                   <form action="https://api.staticforms.dev/submit" method="POST">
+  <input type="hidden" name="apiKey" value="sf_78i1flg8m5l8kg3j4969nj2c">
+                       <input type="hidden" name="redirectTo" value="https://sujiit08.github.io/Business.com/thankyou.html">
+
+
+                        <h3 style="text-align: center;">Service Request</h3>
                         <label>Name</label>
-                        <input type="text" name="name" placeholder="Enter Your Full Name" required><br><br>
+                        <input type="text" name="Name" placeholder="Enter Your Full Name" required><br><br>
 
                         <label>WhatsApp Number</label>
-                        <input type="tel" name="mobile" required placeholder="10 digit number" maxlength="10"
+                        <input type="tel" name="Mobile" required placeholder="10 digit number" maxlength="10"
                             pattern="[0-9]{10}"><br><br>
 
                         <label>Email Address</label>
-                        <input type="email" name="email" required placeholder="example@gmail.com"><br><br>
+                        <input type="email" name="Email" required placeholder="example@gmail.com"><br><br>
 
                         <label>Service Required</label>
-                        <select name="service" required>
+                        <select name="Service" required>
                             <option value="">Select Service</option>
                             <option>Static & Dynamic Website</option>
                             <option>Business Website Development</option>
@@ -187,8 +188,8 @@
                         </select><br><br>
 
                         <label>Message</label>
-                        <textarea name="message" rows="2" required></textarea><br><br>
-                    <!--    <div class="g-recaptcha" data-sitekey="6Lf4_VIsAAAAACHb7LuBTPbtjIhn5o_MjoJ9MiiQ" required></div> -->
+                        <textarea name="Message" rows="2" required></textarea><br><br>
+                        <div class="g-recaptcha" data-sitekey="6Lf4_VIsAAAAACHb7LuBTPbtjIhn5o_MjoJ9MiiQ" required></div>
 
 
                         <button type="submit">Send Request</button>
@@ -239,67 +240,32 @@
 
             let text =
                 "Service Request%0A" +
-                "Name: " + name + "%0A" +
-                "Phone: " + phone + "%0A" +
-                "Email: " + email + "%0A" +
-                "Service: " + service + "%0A" +
-                "Message: " + message;
+                "Name: " + Name + "%0A" +
+                "Phone: " + Phone + "%0A" +
+                "Email: " + Email + "%0A" +
+                "Service: " + Service + "%0A" +
+                "Message: " + Message;
 
             let url = "https://wa.me/" + whatsappNumber + "?text=" + text;
 
             window.open(url, "_blank");
         }
     </script>
-    
+    <script>
+        document.getElementById("contactForm").addEventListener("submit", function (e) {
+            var captchaResponse = grecaptcha.getResponse();
+
+            if (captchaResponse.length === 0) {
+                e.preventDefault(); // ⛔ submit rok do
+                alert("Please complete the reCAPTCHA before submitting.");
+                return false;
+            }
+        });
+    </script>
 <script
   src="https://app.livechatai.com/embed.js"
   data-id="cml117e310001l804tfymdolw"
   async defer>
 </script>
-    <script>
-  const firebaseConfig = {
-    apiKey: "AIzaSyDA_dNZKRKHEEA9IQ6yO03o9QFqO9dheqw", 
-    authDomain: "business-e0944.firebaseapp.com",
-    projectId: "business-e0944",
-    storageBucket: "business-e0944.firebasestorage.app", 
-    messagingSenderId: "757820881392", 
-    appId: "1:757820881392:web:d5cd79bc00056094d54535",
-  };
-
-  firebase.initializeApp(firebaseConfig);
-  const db = firebase.firestore();
-
-  document.getElementById("contactForm").addEventListener("submit", function (e) {
-    e.preventDefault(); // 🔥 page refresh stop
-
-    const name = document.querySelector("[name='name']").value;
-    const mobile = document.querySelector("[name='mobile']").value;
-    const email = document.querySelector("[name='email']").value;
-    const service = document.querySelector("[name='service']").value;
-    const message = document.querySelector("[name='message']").value;
-
-    db.collection("contacts").add({
-      name: name,
-      mobile: mobile,
-      email: email,
-      service: service,
-      message: message,
-      createdAt: new Date()
-    })
-    .then(function () {
-      window.location.href = "thankyou.html";
-    })
-    .catch(function (error) {
-      console.error("Error:", error);
-      alert("Error saving data ❌");
-    });
-  });
-</script>
-
-
-
 </body>
 </html>
-
-
-
