@@ -381,3 +381,18 @@
                 transform-origin: 0 0;
             }
         }
+.live-btn {
+  display: inline-block;
+  padding: 12px 25px;
+  background: linear-gradient(45deg, #3b82f6, #06b6d4);
+  color: white;
+  text-decoration: none;
+  border-radius: 30px;
+  font-weight: 600;
+  transition: 0.4s ease;
+}
+
+.live-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+}
